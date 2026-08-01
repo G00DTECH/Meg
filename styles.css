@@ -505,6 +505,7 @@ button, a, .d-icon, .pf-btn,
 }
 .welcome-sub  { color: rgba(255,255,255,.8); font-size: 11px; text-shadow: 0 1px 3px rgba(0,0,0,.8); }
 .welcome-inner { text-align: center; padding: 10px 16px 14px; }
+.welcome-intro { font-size: 11px; line-height: 1.5; color: #222; max-width: 460px; margin: 0 auto 10px; }
 .welcome-hint { font-size: 11px; margin-bottom: 12px; }
 .welcome-btns { display: flex; gap: 8px; justify-content: center; }
 

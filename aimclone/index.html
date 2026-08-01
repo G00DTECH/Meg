@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIM - AOL Instant Messenger</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="aim-logo">
+            <div class="running-man">🏃</div>
+            <h1>AIM</h1>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <p class="loading-message">Connecting to AIM servers...</p>
+    </div>
+
+    <!-- Sign On Window -->
+    <div id="signOnWindow" class="window sign-on-window" style="display: none;">
+        <div class="title-bar">
+            <span>AOL Instant Messenger - Sign On</span>
+            <button class="close-btn">×</button>
+        </div>
+        <div class="window-content">
+            <div class="buddy-icon-select">
+                <div class="icon-placeholder">👤</div>
+            </div>
+            <input type="text" id="screenName" placeholder="Screen Name" maxlength="16">
+            <input type="password" id="password" placeholder="Password">
+            <label class="checkbox-label">
+                <input type="checkbox" id="autoSignOn"> Auto-sign on
+            </label>
+            <button id="signOnBtn" class="primary-btn">Sign On</button>
+            <p class="hint-text">Psst... any screen name works!</p>
+        </div>
+    </div>
+
+    <!-- Main Buddy List Window -->
+    <div id="buddyListWindow" class="window buddy-list-window" style="display: none;">
+        <div class="title-bar">
+            <span id="buddyListTitle">Buddy List</span>
+            <button class="minimize-btn">_</button>
+            <button class="close-btn">×</button>
+        </div>
+
+        <div class="menu-bar">
+            <span>My AIM</span>
+            <span>People</span>
+            <span>Help</span>
+        </div>
+
+        <div class="user-info">
+            <div class="user-icon">😎</div>
+            <div class="user-details">
+                <div class="screen-name-display"></div>
+                <button id="awayBtn" class="status-btn">I'm Away</button>
+            </div>
+        </div>
+
+        <div class="buddy-list-container">
+            <div class="buddy-group">
+                <div class="group-header" data-group="online">
+                    <span class="expand-icon">▼</span>
+                    <span class="group-name">Buddies</span>
+                    <span class="buddy-count">(0/0)</span>
+                </div>
+                <div class="group-content" id="onlineBuddies"></div>
+            </div>
+
+            <div class="buddy-group">
+                <div class="group-header" data-group="offline">
+                    <span class="expand-icon">▼</span>
+                    <span class="group-name">Offline</span>
+                    <span class="buddy-count">(0)</span>
+                </div>
+                <div class="group-content collapsed" id="offlineBuddies"></div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <span id="totalBuddyCount">0 buddies online</span>
+        </div>
+    </div>
+
+    <!-- Away Message Window -->
+    <div id="awayMessageWindow" class="window away-window" style="display: none;">
+        <div class="title-bar">
+            <span>Away Message</span>
+            <button class="close-btn" onclick="closeAwayWindow()">×</button>
+        </div>
+        <div class="window-content">
+            <p>Choose an away message:</p>
+            <select id="awayPresets" class="away-select">
+                <option value="">-- Select Preset --</option>
+                <option value="brb">brb</option>
+                <option value="at dinner">at dinner</option>
+                <option value="doing homework lol">doing homework lol</option>
+                <option value="out with friends">out with friends</option>
+                <option value="be back later">be back later</option>
+                <option value="away from computer">away from computer</option>
+                <option value="🎵 listening to music 🎵">🎵 listening to music 🎵</option>
+                <option value="gone but not forgotten...">gone but not forgotten...</option>
+                <option value="if you're reading this, i'm probably afk">if you're reading this, i'm probably afk</option>
+            </select>
+            <textarea id="awayMessage" placeholder="Or type your own away message..."></textarea>
+            <div class="button-row">
+                <button id="setAwayBtn" class="primary-btn">Set Away</button>
+                <button onclick="closeAwayWindow()" class="secondary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Window Template -->
+    <template id="chatWindowTemplate">
+        <div class="window chat-window">
+            <div class="title-bar">
+                <span class="chat-title">Instant Message from <span class="buddy-name-title"></span></span>
+                <button class="minimize-btn">_</button>
+                <button class="close-btn">×</button>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages"></div>
+
+                <div class="typing-indicator" style="display: none;">
+                    <span class="buddy-name-typing"></span> is typing
+                    <span class="typing-dots">
+                        <span>.</span><span>.</span><span>.</span>
+                    </span>
+                </div>
+
+                <div class="chat-input-container">
+                    <textarea class="chat-input" placeholder="Type a message..."></textarea>
+                    <div class="chat-buttons">
+                        <button class="send-btn primary-btn">Send</button>
+                        <button class="warn-btn secondary-btn">⚠️ Warn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Warning Modal -->
+    <div id="warningModal" class="modal" style="display: none;">
+        <div class="modal-content warning-modal">
+            <div class="warning-icon">⚠️</div>
+            <h2>Warning</h2>
+            <p class="warning-text"></p>
+            <button class="primary-btn" onclick="closeWarningModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Connection Lost Toast -->
+    <div id="connectionToast" class="toast" style="display: none;">
+        <span class="toast-icon">⚠️</span>
+        <span class="toast-message">Connection lost... reconnecting</span>
+    </div>
+
+    <!-- Easter Egg Modal -->
+    <div id="easterEggModal" class="modal" style="display: none;">
+        <div class="modal-content easter-egg-modal">
+            <h2>✨ You found a secret! ✨</h2>
+            <div class="easter-egg-content"></div>
+            <button class="primary-btn" onclick="closeEasterEggModal()">Cool!</button>
+        </div>
+    </div>
+
+    <audio id="doorOpenSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAAA=" type="audio/wav">
+    </audio>
+    <audio id="doorCloseSound" preload="auto"></audio>
+    <audio id="messageSound" preload="auto"></audio>
+    <audio id="awaySound" preload="auto"></audio>
+
+    <!-- Socket.io Client Library -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+
+    <script src="sounds.js"></script>
+    <script src="easter-eggs.js"></script>
+
+    <!-- Use app-realtime.js for real backend connectivity -->
+    <!-- For demo mode with fake buddies, use app.js instead -->
+    <script src="app-realtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+# Meghan Hair Studio — meghanlaurahair.com
+# Robots Exclusion Protocol
+# Configuration: open access for all crawlers including AI search and training bots
+
+User-agent: *
+Allow: /
+Disallow: /aimclone/
+Disallow: /versions/
+Disallow: /cursor/
+Disallow: /buttons/
+Disallow: /business-knowledge.json
+
+# AI Search and Training Crawlers — explicitly welcome
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Amazon / Alexa AI
+User-agent: Amazonbot
+Allow: /
+
+# Google Gemini training (separate from Google Search)
+User-agent: Google-Extended
+Allow: /
+
+# ByteDance / TikTok AI
+User-agent: Bytespider
+Allow: /
+
+# Common Crawl (feeds many open AI models)
+User-agent: CCBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Cohere AI
+User-agent: Cohere-ai
+Allow: /
+
+Sitemap: https://meghanlaurahair.com/sitemap.xml

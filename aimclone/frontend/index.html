@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIM - AOL Instant Messenger</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sign On Screen -->
+    <div id="signin-screen" class="window signin-window">
+        <div class="window-titlebar">
+            <div class="window-title">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Crect fill='%23ffcc00' width='16' height='16'/%3E%3Ctext x='8' y='12' font-family='Arial' font-size='12' fill='white' text-anchor='middle' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E" alt="AIM" class="aim-icon">
+                AOL Instant Messenger
+            </div>
+        </div>
+        <div class="window-content signin-content">
+            <div class="signin-logo">
+                <div class="aim-logo">AIM</div>
+                <div class="tagline">We're Buddies!</div>
+            </div>
+            <div class="signin-form">
+                <label for="screenname-input">Screen Name:</label>
+                <input type="text" id="screenname-input" maxlength="20" placeholder="Enter your screen name">
+                <button id="signin-button" class="aim-button">Sign On</button>
+                <div id="signin-error" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buddy List Window -->
+    <div id="buddy-list-window" class="window buddy-list-window" style="display: none;">
+        <div class="window-titlebar">
+            <div class="window-title">
+                <span id="current-user-name">Buddy List</span>
+            </div>
+            <div class="window-controls">
+                <button class="control-btn minimize">_</button>
+                <button class="control-btn close" id="signoff-btn">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="status-bar">
+                <select id="status-select" class="status-dropdown">
+                    <option value="available">Available</option>
+                    <option value="away">Away</option>
+                </select>
+                <button id="away-message-btn" class="small-btn" style="display: none;">Set Away Message</button>
+            </div>
+            <div class="buddy-list-container">
+                <div class="buddy-group">
+                    <div class="buddy-group-header">
+                        <span class="group-arrow">▼</span>
+                        <span>Buddies (<span id="online-count">0</span>)</span>
+                    </div>
+                    <div id="buddy-list" class="buddy-list">
+                        <div class="no-buddies">No buddies online</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Away Message Dialog -->
+    <div id="away-dialog" class="window dialog" style="display: none;">
+        <div class="window-titlebar">
+            <div class="window-title">Set Away Message</div>
+            <div class="window-controls">
+                <button class="control-btn close" id="away-dialog-close">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <textarea id="away-message-text" placeholder="Enter your away message..." rows="4"></textarea>
+            <div class="dialog-buttons">
+                <button id="away-message-save" class="aim-button">OK</button>
+                <button id="away-message-cancel" class="aim-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Window Template (will be cloned) -->
+    <template id="chat-window-template">
+        <div class="window chat-window">
+            <div class="window-titlebar">
+                <div class="window-title chat-title">Instant Message</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize">_</button>
+                    <button class="control-btn close chat-close">X</button>
+                </div>
+            </div>
+            <div class="window-content chat-content">
+                <div class="chat-header">
+                    <span class="chat-buddy-name"></span>
+                    <span class="typing-indicator" style="display: none;">Typing...</span>
+                </div>
+                <div class="chat-messages"></div>
+                <div class="chat-input-area">
+                    <textarea class="chat-input" placeholder="Type your message here..." rows="3"></textarea>
+                    <div class="chat-buttons">
+                        <button class="send-btn aim-button">Send</button>
+                        <button class="warn-btn aim-button-secondary">Warn</button>
+                        <button class="block-btn aim-button-secondary">Block</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <!-- Audio elements (hidden) -->
+    <audio id="door-open-sound" preload="auto">
+        <!-- Placeholder for sound effect -->
+    </audio>
+    <audio id="door-close-sound" preload="auto">
+        <!-- Placeholder for sound effect -->
+    </audio>
+    <audio id="message-sound" preload="auto">
+        <!-- Placeholder for sound effect -->
+    </audio>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

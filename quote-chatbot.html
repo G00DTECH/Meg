@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Assistant - Meghan Hair Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': '#ec4899',
+                        'brand-purple': '#8b5cf6',
+                        'brand-sky': '#0ea5e9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chat-bubble {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-indicator {
+            animation: pulse 1.5s infinite;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-purple-50 to-sky-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors">
+                        ← Back to Main Site
+                    </a>
+                    <div class="h-6 w-px bg-gray-300"></div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                        Quote Assistant
+                    </h1>
+                </div>
+                <div class="flex space-x-3">
+                    <a href="quote-calculator.html" class="bg-brand-sky text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors">
+                        Full Calculator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Interface -->
+    <div class="container mx-auto px-4 py-6 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 h-[700px] flex flex-col">
+            
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-brand-pink to-brand-purple text-white p-4 rounded-t-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <span class="text-lg">💬</span>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold">Meghan Hair Studio Assistant</h2>
+                        <p class="text-sm text-white/80">I'm here to help with DJ/MC and hair styling quotes!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto scrollbar-thin space-y-4">
+                <!-- Welcome message will be inserted here -->
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div id="quick-actions" class="px-4 pb-2">
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <!-- Quick action buttons will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex space-x-3">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        placeholder="Ask me about DJ services, hair styling, pricing, or anything else..."
+                        class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-purple focus:border-transparent outline-none"
+                        maxlength="500"
+                    >
+                    <button 
+                        id="send-button"
+                        class="bg-gradient-to-r from-brand-pink to-brand-purple text-white px-6 py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Send
+                    </button>
+                </div>
+                <div class="mt-2 text-xs text-gray-500">
+                    Press Enter to send • <span id="char-count">0</span>/500 characters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Builder Modal (hidden by default) -->
+    <div id="quote-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Quick Quote Builder</h3>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <p class="text-gray-600">What type of event are you planning?</p>
+                <div class="space-y-2">
+                    <button class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50" onclick="selectEventType('wedding')">
+                        Wedding (DJ + Hair Services)
+                    </button>
+                    <button class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50" onclick="selectEventType('dj-only')">
+                        Event (DJ/MC Services Only)
+                    </button>
+                    <button class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50" onclick="selectEventType('hair-only')">
+                        Hair Services Only
+                    </button>
+                </div>
+                <div class="pt-4 border-t">
+                    <button onclick="goToFullCalculator()" class="w-full bg-brand-sky text-white p-3 rounded-lg hover:bg-sky-600 transition-colors">
+                        Use Full Calculator Instead
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real Claude AI Integration -->
+    <script>
+        class QuoteChatbot {
+            constructor() {
+                this.chatMessages = document.getElementById('chat-messages');
+                this.chatInput = document.getElementById('chat-input');
+                this.sendButton = document.getElementById('send-button');
+                this.quickActions = document.getElementById('quick-actions');
+                this.charCount = document.getElementById('char-count');
+                
+                this.conversation = [];
+                this.isTyping = false;
+                this.sessionId = this.generateSessionId();
+                
+                this.init();
+            }
+
+            generateSessionId() {
+                return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+
+            init() {
+                // Event listeners
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+                this.chatInput.addEventListener('input', () => this.updateCharCount());
+                
+                document.getElementById('close-modal').addEventListener('click', () => {
+                    document.getElementById('quote-modal').classList.add('hidden');
+                });
+
+                // Show welcome message
+                this.showWelcomeMessage();
+                this.renderQuickActions();
+            }
+
+            showWelcomeMessage() {
+                const welcomeMessage = {
+                    type: 'bot',
+                    text: "Hello! Welcome to Meghan Hair Studio! 👋 I'm here to help you get information and quotes for our DJ/MC and hair styling services. What can I help you with today?",
+                    timestamp: new Date()
+                };
+                
+                this.addMessage(welcomeMessage);
+            }
+
+            async sendMessage() {
+                const text = this.chatInput.value.trim();
+                if (!text || this.isTyping) return;
+
+                // Add user message
+                const userMessage = {
+                    type: 'user',
+                    text: text,
+                    timestamp: new Date()
+                };
+                
+                this.addMessage(userMessage);
+                this.conversation.push(userMessage);
+                this.chatInput.value = '';
+                this.updateCharCount();
+
+                // Process response with Claude API
+                await this.processUserInput(text);
+            }
+
+            async processUserInput(input) {
+                this.showTypingIndicator();
+
+                try {
+                    // Try Claude API first
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: input,
+                            sessionId: this.sessionId
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        const botMessage = {
+                            type: 'bot',
+                            text: data.message,
+                            timestamp: new Date()
+                        };
+                        
+                        this.hideTypingIndicator();
+                        this.addMessage(botMessage);
+                        this.conversation.push(botMessage);
+                        return;
+                    } else {
+                        // If Claude API fails, fall back to pattern matching
+                        throw new Error(`Claude API failed: ${response.status}`);
+                    }
+                    
+                } catch (error) {
+                    console.warn('Claude API unavailable, using fallback system:', error.message);
+                    
+                    // Fallback to original pattern matching system
+                    this.useFallbackResponse(input);
+                }
+            }
+
+            useFallbackResponse(input) {
+                // Simulate the original chatbot delay
+                setTimeout(() => {
+                    const intent = this.findIntent(input);
+                    const responseData = this.formatFallbackResponse(intent, input);
+                    
+                    const botMessage = {
+                        type: 'bot',
+                        text: responseData.response + (responseData.showFallbackNotice ? '\n\n💡 *Currently using our backup system. Full AI features will return shortly.*' : ''),
+                        timestamp: new Date()
+                    };
+                    
+                    this.hideTypingIndicator();
+                    this.addMessage(botMessage);
+                    this.conversation.push(botMessage);
+                    
+                    // Show follow-up if available
+                    if (responseData.followUp) {
+                        setTimeout(() => {
+                            const followUpMessage = {
+                                type: 'bot',
+                                text: responseData.followUp,
+                                timestamp: new Date()
+                            };
+                            this.addMessage(followUpMessage);
+                        }, 1000);
+                    }
+                    
+                }, 800 + Math.random() * 800);
+            }
+
+            // Simple pattern matching fallback
+            findIntent(userInput) {
+                const input = userInput.toLowerCase().trim();
+                
+                // Check for restart/negative responses
+                if (input === 'no' || input === 'nope' || input === 'wrong' || 
+                    input.includes('start over') || input.includes('restart')) {
+                    return 'restart';
+                }
+                
+                // Check for specific intents
+                const intentKeywords = {
+                    greeting: ['hi', 'hello', 'hey', 'good morning', 'good afternoon'],
+                    djServices: ['dj', 'music', 'wedding reception', 'party music', 'sound', 'mc'],
+                    hairServices: ['hair', 'styling', 'bridal hair', 'bridesmaid', 'cut', 'color'],
+                    pricing: ['price', 'cost', 'how much', 'expensive', 'budget', 'quote', 'estimate'],
+                    booking: ['book', 'schedule', 'appointment', 'available', 'date', 'reserve'],
+                    packages: ['package', 'bundle', 'deal', 'discount', 'combo'],
+                    help: ['help', 'confused', 'don\'t know', 'not sure', 'guide me']
+                };
+
+                let bestMatch = 'unknown';
+                let maxMatches = 0;
+
+                for (const [intent, keywords] of Object.entries(intentKeywords)) {
+                    const matches = keywords.filter(keyword => input.includes(keyword)).length;
+                    if (matches > maxMatches) {
+                        maxMatches = matches;
+                        bestMatch = intent;
+                    }
+                }
+
+                return bestMatch;
+            }
+
+            formatFallbackResponse(intent, userInput) {
+                const responses = {
+                    greeting: [
+                        "Hello! Welcome to Meghan Hair Studio! I'm here to help you get a quote for DJ/MC and hair styling services. What can I help you with today?",
+                        "Hi there! Thanks for visiting Meghan Hair Studio. I can help you explore our DJ/MC and hair services. What are you looking for?"
+                    ],
+                    djServices: [
+                        "We offer comprehensive DJ/MC services! Our packages include:\n• 6-hour Standard Reception: $1,400 (up to 100 guests)\n• 8-hour Premium Reception: $1,600 (100+ guests)\n• Ceremony music, lighting, and equipment available\n\nWhat type of event are you planning?",
+                        "Our DJ services include professional sound systems, music libraries, and MC services. Base packages start at $1,400. Tell me about your event!"
+                    ],
+                    hairServices: [
+                        "Our hair services include:\n• Bridal Styling: $150\n• Event Styling: $95\n• Bridesmaid Styling: $85 each\n• Salon services: cuts, color, highlights\n\nWhat type of hair services do you need?",
+                        "We specialize in wedding and event hair styling! From bridal trials to complete wedding party services. What's your event date and guest count?"
+                    ],
+                    pricing: [
+                        "I'd love to create a personalized quote for you! Our services include:\n• DJ packages: $1,400-$1,600\n• Hair styling: $85-$150\n• Package deals available\n\nWhat type of event are you planning?",
+                        "Let's build your custom quote! DJ services start at $1,400, hair styling from $85. Combined packages offer savings. Tell me about your event!"
+                    ],
+                    booking: [
+                        "To book your services:\n• Get a quote first\n• Visit our StyleSeat page: https://www.styleseat.com/m/v/meghanlaurahair\n• 25% deposit holds your date\n\nWhat's your event date?",
+                        "Great! I recommend getting a quote first, then booking through StyleSeat. When is your event and what services do you need?"
+                    ],
+                    packages: [
+                        "We have great package deals:\n• Complete Coverage Bundle: $800 (saves $150)\n• Entertainment Plus Bundle: $1,200 (saves $200)\n• Technical Pro Bundle: $600 (saves $100)\n\nWhich interests you?",
+                        "Our bundles offer significant savings! The Complete Coverage includes ceremony music, cocktail hour, reception, and lighting. Want details?"
+                    ],
+                    help: [
+                        "I'm here to help! I can assist with:\n• DJ/MC services and pricing\n• Hair styling services\n• Package deals\n• Booking information\n\nWhat would you like to know about?",
+                        "No problem! Just tell me what you're planning - wedding, party, or other event - and I'll guide you through our services and pricing."
+                    ],
+                    restart: [
+                        "No problem! Let's start fresh. What type of event are you planning?"
+                    ],
+                    unknown: [
+                        "I'd love to help you! I specialize in DJ/MC and hair styling services for weddings and events. What specific information would be most helpful?",
+                        "I'm here to help with questions about our DJ services, hair styling, pricing, and booking. What interests you most?"
+                    ]
+                };
+
+                const intentResponses = responses[intent] || responses.unknown;
+                const response = intentResponses[Math.floor(Math.random() * intentResponses.length)];
+                
+                // Add follow-ups for certain intents
+                const followUps = {
+                    djServices: "Would you like to know about lighting, ceremony music, or other add-ons?",
+                    hairServices: "Do you need services for multiple people or just yourself?",
+                    pricing: "I can give you an exact quote with your event details!",
+                    packages: "Want me to recommend the best package for your event type?"
+                };
+
+                return {
+                    response: response,
+                    followUp: followUps[intent] || null,
+                    showFallbackNotice: intent !== 'greeting' // Don't show notice on greeting
+                };
+            }
+
+            addMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-bubble flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`;
+                
+                const bubbleClass = message.type === 'user' 
+                    ? 'bg-gradient-to-r from-brand-pink to-brand-purple text-white' 
+                    : 'bg-gray-100 text-gray-800';
+                
+                messageDiv.innerHTML = `
+                    <div class="max-w-xs lg:max-md px-4 py-3 rounded-lg ${bubbleClass}">
+                        <p class="text-sm whitespace-pre-line">${this.escapeHtml(message.text)}</p>
+                        <div class="text-xs mt-1 opacity-70">
+                            ${message.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                        </div>
+                    </div>
+                `;
+                
+                this.chatMessages.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+
+            bookAppointment() {
+                const styleseatUrl = 'https://www.styleseat.com/m/v/meghanlaurahair';
+                window.open(styleseatUrl, '_blank');
+                this.addSystemMessage("📅 Opening booking page in new tab!");
+            }
+
+            goToFullCalculator() {
+                window.location.href = 'quote-calculator.html';
+            }
+
+            addSystemMessage(text) {
+                const systemMessage = {
+                    type: 'bot',
+                    text: text,
+                    timestamp: new Date()
+                };
+                this.addMessage(systemMessage);
+            }
+
+            clearConversation() {
+                this.chatMessages.innerHTML = '';
+                this.conversation = [];
+                this.sessionId = this.generateSessionId();
+                this.showWelcomeMessage();
+                this.renderQuickActions();
+            }
+
+            showTypingIndicator() {
+                if (this.isTyping) return;
+                this.isTyping = true;
+                
+                const typingDiv = document.createElement('div');
+                typingDiv.id = 'typing-indicator';
+                typingDiv.className = 'flex justify-start';
+                typingDiv.innerHTML = `
+                    <div class="bg-gray-100 px-4 py-3 rounded-lg">
+                        <div class="typing-indicator flex space-x-1">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        </div>
+                    </div>
+                `;
+                
+                this.chatMessages.appendChild(typingDiv);
+                this.scrollToBottom();
+            }
+
+            hideTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+                this.isTyping = false;
+            }
+
+            renderQuickActions() {
+                this.quickActions.innerHTML = '';
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'flex flex-wrap gap-2 mb-3';
+                
+                const quickActions = [
+                    { text: "Get a Quote", message: "I'd like to get a quote for my event" },
+                    { text: "DJ/MC Services", message: "Tell me about your DJ and MC services" },
+                    { text: "Bridal Hair", message: "What bridal hair services do you offer?" },
+                    { text: "View Packages", message: "Show me your package deals and pricing" },
+                    { text: "Check Availability", message: "Can you check availability for my date?" },
+                    { text: "Payment Info", message: "What are your payment terms and deposit requirements?" },
+                    { text: "Book Consultation", message: "How do I book a consultation?" },
+                    { text: "Start Over", message: "I'd like to start over with a fresh conversation" }
+                ];
+                
+                quickActions.forEach(action => {
+                    const button = document.createElement('button');
+                    button.className = 'px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200 transition-colors';
+                    button.textContent = action.text;
+                    button.addEventListener('click', () => this.handleQuickAction(action.message));
+                    actionsDiv.appendChild(button);
+                });
+                
+                this.quickActions.appendChild(actionsDiv);
+            }
+
+            async handleQuickAction(message) {
+                // Set the message in the input
+                this.chatInput.value = message;
+                // Send it
+                await this.sendMessage();
+            }
+
+            updateCharCount() {
+                const count = this.chatInput.value.length;
+                this.charCount.textContent = count;
+                
+                if (count > 450) {
+                    this.charCount.className = 'text-red-500';
+                } else if (count > 400) {
+                    this.charCount.className = 'text-yellow-500';
+                } else {
+                    this.charCount.className = 'text-gray-500';
+                }
+            }
+
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // Global functions for modal actions
+        function selectEventType(type) {
+            document.getElementById('quote-modal').classList.add('hidden');
+            
+            let message = '';
+            switch(type) {
+                case 'wedding':
+                    message = 'I need both DJ and hair services for a wedding';
+                    break;
+                case 'dj-only':
+                    message = 'I only need DJ/MC services for an event';
+                    break;
+                case 'hair-only':
+                    message = 'I only need hair styling services';
+                    break;
+            }
+            
+            if (window.chatbot) {
+                window.chatbot.chatInput.value = message;
+                window.chatbot.sendMessage();
+            }
+        }
+
+        function goToFullCalculator() {
+            window.location.href = 'quote-calculator.html';
+        }
+
+        // Initialize chatbot when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            window.chatbot = new QuoteChatbot();
+        });
+    </script>
+</body>
+</html>

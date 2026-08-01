@@ -1,0 +1,411 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+
+    {
+      "@type": "HairSalon",
+      "@id": "https://meghanlaurahair.com/#business",
+      "name": "Meghan's Hair Studio",
+      "alternateName": "Meghan Laura Hair",
+      "url": "https://meghanlaurahair.com",
+      "description": "Vivid color, expressive cuts, and studio-style hair services in Portland, Maine. Specializing in bold, dimensional color with 18+ years of experience. 5.0 stars from 126 verified reviews on StyleSeat.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Portland",
+        "addressRegion": "ME",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "126",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Anne"
+        },
+        "reviewBody": "Meghan is super knowledgeable, has great energy, extremely passionate about her work and your results — and provided me with the BEST cut and color transformation EVER. I couldn't be happier."
+      },
+      "employee": {
+        "@id": "https://meghanlaurahair.com/#meghan"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Hair Services",
+        "itemListElement": [
+          { "@id": "https://meghanlaurahair.com/#service-bang-trim" },
+          { "@id": "https://meghanlaurahair.com/#service-30min-cleanup" },
+          { "@id": "https://meghanlaurahair.com/#service-maintenance-cut" },
+          { "@id": "https://meghanlaurahair.com/#service-revival-cut" },
+          { "@id": "https://meghanlaurahair.com/#service-transformation-cut" },
+          { "@id": "https://meghanlaurahair.com/#service-root-touch-up" },
+          { "@id": "https://meghanlaurahair.com/#service-all-over-color" },
+          { "@id": "https://meghanlaurahair.com/#service-partial-balayage" },
+          { "@id": "https://meghanlaurahair.com/#service-partial-custom-blonding" },
+          { "@id": "https://meghanlaurahair.com/#service-full-foil-highlights" },
+          { "@id": "https://meghanlaurahair.com/#service-bleach-tone" },
+          { "@id": "https://meghanlaurahair.com/#service-full-balayage" },
+          { "@id": "https://meghanlaurahair.com/#service-color-correction" },
+          { "@id": "https://meghanlaurahair.com/#service-consultation" }
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/meghanlaura_hair",
+        "https://www.styleseat.com/m/v/meghanlaurahair"
+      ]
+    },
+
+    {
+      "@type": "Person",
+      "@id": "https://meghanlaurahair.com/#meghan",
+      "name": "Meghan Laura",
+      "jobTitle": "Color Artist and Hair Stylist",
+      "description": "18+ years of experience specializing in vivid, dimensional color. Former Newbury Street stylist in Boston, now based in Portland, Maine.",
+      "url": "https://meghanlaurahair.com",
+      "image": "https://meghanlaurahair.com/images/bio%20pic.jpg",
+      "worksFor": {
+        "@id": "https://meghanlaurahair.com/#business"
+      },
+      "knowsAbout": [
+        "Vivid hair color",
+        "Balayage",
+        "Hair color correction",
+        "Bleach and tone",
+        "Dimensional color",
+        "Haircuts",
+        "Hair styling"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/meghanlaura_hair",
+        "https://www.styleseat.com/m/v/meghanlaurahair"
+      ]
+    },
+
+    {
+      "@type": "WebSite",
+      "@id": "https://meghanlaurahair.com/#website",
+      "url": "https://meghanlaurahair.com",
+      "name": "Meghan's Hair Studio",
+      "description": "Vivid color, expressive cuts, and styling in Portland, Maine.",
+      "publisher": {
+        "@id": "https://meghanlaurahair.com/#business"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-bang-trim",
+      "name": "Bang Trim",
+      "description": "Just bangs! Arrive with clean, dry hair — no clips or hair ties.",
+      "serviceType": "Haircut",
+      "category": "Haircuts",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "15 minutes"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-30min-cleanup",
+      "name": "30 Min Clean Up",
+      "description": "Kids of existing clients only. Dry cut, no wash or styling.",
+      "serviceType": "Haircut",
+      "category": "Haircuts",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "30 minutes"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-maintenance-cut",
+      "name": "Maintenance Cut",
+      "description": "Dry cut for established clients only, or established clients with short hair.",
+      "serviceType": "Haircut",
+      "category": "Haircuts",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "1 hour"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-revival-cut",
+      "name": "Revival Cut",
+      "description": "For all new clients and established clients. Includes consultation, shampoo, conditioning treatment, and blow dry.",
+      "serviceType": "Haircut",
+      "category": "Haircuts",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "1.5 hours"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-transformation-cut",
+      "name": "Transformation Cut",
+      "description": "For big changes, curly hair, and extreme density.",
+      "serviceType": "Haircut",
+      "category": "Haircuts",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "2 hours"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-root-touch-up",
+      "name": "Root Touch Up",
+      "description": "Root refresh, blow dry not included.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "45 minutes"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-all-over-color",
+      "name": "All Over Color",
+      "description": "Root-to-ends color refresh. Blonding services not applicable.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "45 minutes"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-partial-balayage",
+      "name": "Partial Balayage",
+      "description": "Highlights painted to the top layer only for natural, sun-kissed brightness.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "1 hour 15 minutes"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-partial-custom-blonding",
+      "name": "Partial Custom Blonding",
+      "description": "Custom blonding technique tailored to your look.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "1 hour"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-full-foil-highlights",
+      "name": "Full Foil Highlights",
+      "description": "Full head of highlights placed throughout all sections of hair.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "2 hours"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-bleach-tone",
+      "name": "Bleach & Tone",
+      "description": "Bleach retouch with treatment and toner application.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "2 hours"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-full-balayage",
+      "name": "Full Balayage",
+      "description": "Highlights painted tip to root for blended, sun-kissed brightness.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "2 hours"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-color-correction",
+      "name": "Color Correction",
+      "description": "Complex color correction and restoration. Consultation required before booking.",
+      "serviceType": "Hair Color",
+      "category": "Color",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+
+    {
+      "@type": "Service",
+      "@id": "https://meghanlaurahair.com/#service-consultation",
+      "name": "Hair Consultation",
+      "description": "One-on-one session to evaluate your hair and the look you want. Bring pictures!",
+      "serviceType": "Consultation",
+      "category": "Consultation",
+      "provider": { "@id": "https://meghanlaurahair.com/#business" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.styleseat.com/m/v/meghanlaurahair",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Appointment Duration",
+        "value": "15 minutes"
+      }
+    }
+
+  ]
+}
+</script>

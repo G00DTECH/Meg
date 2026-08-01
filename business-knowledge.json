@@ -1,0 +1,95 @@
+{
+  "businessInfo": {
+    "name": "Meghan Hair Studio",
+    "location": "Portland, Maine",
+    "owner": "Meghan",
+    "experience": "10+ years, 200+ events",
+    "certifications": ["Licensed Cosmetologist", "Certified DJ"]
+  },
+  "services": {
+    "dj": {
+      "basePackages": {
+        "standard6hr": {
+          "price": 1400,
+          "description": "6-Hour Standard Reception (up to 100 guests)",
+          "included": ["Professional sound system", "Wireless mics", "Music library", "Basic lighting", "MC services", "Setup/breakdown"]
+        },
+        "premium8hr": {
+          "price": 1600,
+          "description": "8-Hour Premium Reception (100+ guests)",
+          "included": ["Professional sound system", "Wireless mics", "Music library", "Basic lighting", "MC services", "Setup/breakdown"]
+        }
+      },
+      "addOns": {
+        "ceremonyMusic": { "price": 200, "description": "Ceremony Music Setup" },
+        "cocktailHour": { "price": 300, "description": "Cocktail Hour Music" },
+        "extraMic": { "price": 75, "description": "Additional Wireless Microphone" },
+        "subwoofer": { "price": 150, "description": "Subwoofer Upgrade" },
+        "basicLighting": { "price": 300, "description": "Basic Lighting Package" },
+        "premiumLighting": { "price": 500, "description": "Premium Lighting with Effects" },
+        "danceFloorLighting": { "price": 250, "description": "Dance Floor Lighting" },
+        "karaoke": { "price": 200, "description": "Karaoke Setup" },
+        "songPortal": { "price": 75, "description": "Song Request Management Portal" },
+        "tvDisplay": { "price": 150, "description": "TV/Display for Slideshows" },
+        "photobooth": { "price": 400, "description": "Photobooth (4 hours)" }
+      }
+    },
+    "hair": {
+      "eventStyling": {
+        "regular": { "price": 95, "description": "Regular Event Styling" },
+        "bridal": { "price": 150, "description": "Bridal Styling" },
+        "bridesmaid": { "price": 85, "description": "Bridesmaid Styling" },
+        "flowerGirl": { "price": 65, "description": "Flower Girl Styling" },
+        "motherOfBride": { "price": 95, "description": "Mother of Bride/Groom" }
+      },
+      "salonServices": {
+        "cut": { "price": 85, "description": "Precision Cut" },
+        "color": { "priceRange": [120, 200], "description": "Color Services (depending on complexity)" },
+        "highlights": { "priceRange": [150, 250], "description": "Highlights/Lowlights" },
+        "trial": { "price": 75, "description": "Bridal Hair Trial" },
+        "extensions": { "priceRange": [200, 400], "description": "Hair Extensions" }
+      }
+    }
+  },
+  "packages": {
+    "completeCoverage": {
+      "price": 800,
+      "savings": 150,
+      "description": "Complete Coverage Bundle (ceremony + cocktail + reception + basic lighting)"
+    },
+    "entertainmentPlus": {
+      "price": 1200,
+      "savings": 200,
+      "description": "Entertainment Plus Bundle (premium DJ + lighting + effects)"
+    },
+    "technicalPro": {
+      "price": 600,
+      "savings": 100,
+      "description": "Technical Pro Bundle (upgraded sound + extra mics + lighting)"
+    }
+  },
+  "policies": {
+    "travel": {
+      "freeRadius": 30,
+      "costPerMile": 1,
+      "description": "FREE travel within 30 miles of Portland, $1 per mile each way beyond that"
+    },
+    "booking": {
+      "deposit": 0.25,
+      "balanceDue": "2 weeks before event",
+      "paymentMethods": ["cash", "check", "credit cards"],
+      "bookingUrl": "https://www.styleseat.com/m/v/meghanlaurahair"
+    },
+    "cancellation": {
+      "90plus": "Full refund minus $200 processing fee",
+      "30to89": "50% refund",
+      "under30": "No refund",
+      "dateChanges": "Possible with advance notice"
+    },
+    "seasonal": {
+      "peakSeason": "May-October",
+      "bookingAdvice": "Book 8-12 months ahead for peak season",
+      "offSeason": "November-April (more flexibility, potential discounts)"
+    }
+  }
+}

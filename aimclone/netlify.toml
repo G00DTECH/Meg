@@ -1,0 +1,8 @@
+# Netlify configuration for AIM Chat
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,15 @@
+{
+  "name": "aim-chat",
+  "version": "1.0.0",
+  "description": "Nostalgic AIM-style chat application",
+  "scripts": {
+    "start": "npm start --prefix backend",
+    "backend": "npm start --prefix backend",
+    "frontend": "npx http-server frontend -p 8000",
+    "dev": "echo 'Start backend in one terminal: npm run backend' && echo 'Start frontend in another: npm run frontend'",
+    "install-all": "cd backend && npm install"
+  },
+  "keywords": ["aim", "chat", "socketio", "nostalgia", "instant-messenger"],
+  "author": "",
+  "license": "MIT"
+}

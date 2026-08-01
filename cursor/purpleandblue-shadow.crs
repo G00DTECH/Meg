@@ -1,0 +1,39 @@
+﻿[Arrow]
+Path=Normal.ani
+
+[UpArrow]
+Path=Alternate.cur
+
+[Wait]
+Path=Busy.cur
+
+[SizeNWSE]
+Path=Diagonal Resize 1.ani
+
+[SizeNESW]
+Path=Diagonal Resize 2.ani
+
+[Help]
+Path=Help.ani
+
+[SizeWE]
+Path=Horizontal Resize.ani
+
+[SizeAll]
+Path=Move.ani
+
+[SizeNS]
+Path=Vertical Resize.ani
+
+[AppStarting]
+Path=Working.ani
+
+[No]
+Path=Unavailable.cur
+
+[NWPen]
+Path=Handwriting.cur
+
+[Hand]
+Path=Link.ani
+

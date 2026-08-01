@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair & Styling Quote Calculator - Meghan Hair Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .calculator-card {
+            transition: all 0.3s ease;
+        }
+        .calculator-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .service-checkbox:checked + .service-label {
+            background: linear-gradient(135deg, #0ea5e9, #ec4899);
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+        .service-label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .service-label:hover {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+        .quote-summary {
+            background: linear-gradient(135deg, #f0f9ff, #fef7f7);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 to-blue-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-sky-600 tracking-wide">MEGHAN HAIR STUDIO</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-sky-600 transition-colors">Home</a>
+                    <a href="index.html#about" class="hover:text-sky-600 transition-colors">About</a>
+                    <a href="index.html#services" class="hover:text-sky-600 transition-colors">Services</a>
+                    <a href="wedding-mc-form.html" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition-colors">Wedding MC Form</a>
+                    <a href="index.html#contact" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mt-20">
+        <!-- Header Section -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800 tracking-wide">DJ/MC & HAIR STYLING QUOTE CALCULATOR</h1>
+            <p class="text-xl text-gray-600 mb-6">Get an instant quote for your DJ/MC and hair styling services</p>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto">Select your desired services and provide your location to receive a personalized quote. Complete DJ/MC packages, hair styling services, and wedding bundles available. Travel charges apply for distances over 30 miles from Portland, Maine at $1 per mile.</p>
+        </section>
+
+        <!-- Quote Calculator -->
+        <section class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Services Selection -->
+                <div class="calculator-card bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800 tracking-wide">SELECT SERVICES</h2>
+                    
+                    <!-- DJ/MC Services -->
+                    <div class="space-y-4 mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 border-b border-gray-200 pb-2">DJ/MC Services</h3>
+                        
+                        <!-- Base Package -->
+                        <div class="service-item">
+                            <input type="checkbox" id="dj-base-1400" class="service-checkbox hidden" data-price="1400">
+                            <label for="dj-base-1400" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Standard Wedding Reception (6 hrs) - Basic</span>
+                                        <p class="text-sm text-gray-600">6 hours DJ/MC, sound system, music library, basic lighting, setup/breakdown</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">$1,400</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="dj-base-1600" class="service-checkbox hidden" data-price="1600">
+                            <label for="dj-base-1600" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Standard Wedding Reception (8 hrs) - Premium</span>
+                                        <p class="text-sm text-gray-600">8 hours DJ/MC, sound system, music library, basic lighting, setup/breakdown</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">$1,600</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Equipment Rentals -->
+                        <div class="service-item">
+                            <input type="checkbox" id="subwoofer" class="service-checkbox hidden" data-price="150">
+                            <label for="subwoofer" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Professional Subwoofer Upgrade</span>
+                                        <p class="text-sm text-gray-600">Enhanced bass and sound quality</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-blue-600">$150</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="wireless-mic" class="service-checkbox hidden" data-price="75" data-qty="true">
+                            <label for="wireless-mic" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Additional Wireless Handheld Microphones</span>
+                                        <p class="text-sm text-gray-600">$75 each - Qty: <input type="number" min="1" max="10" value="1" class="qty-input w-16 ml-2 p-1 border border-gray-300 rounded"></p>
+                                    </div>
+                                    <span class="text-lg font-bold text-blue-600">$75 ea</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="lapel-mic" class="service-checkbox hidden" data-price="100" data-qty="true">
+                            <label for="lapel-mic" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Lapel/Headset Microphones</span>
+                                        <p class="text-sm text-gray-600">$100 each - Qty: <input type="number" min="1" max="10" value="1" class="qty-input w-16 ml-2 p-1 border border-gray-300 rounded"></p>
+                                    </div>
+                                    <span class="text-lg font-bold text-blue-600">$100 ea</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="ceremony-sound" class="service-checkbox hidden" data-price="200">
+                            <label for="ceremony-sound" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Ceremony Location Sound System</span>
+                                        <p class="text-sm text-gray-600">Separate sound setup for ceremony location</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-blue-600">$200</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Visual Equipment -->
+                        <div class="service-item">
+                            <input type="checkbox" id="tv-40" class="service-checkbox hidden" data-price="300">
+                            <label for="tv-40" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">40" TV/Monitor for Announcements</span>
+                                        <p class="text-sm text-gray-600">Display for announcements and information</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$300</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="tv-55" class="service-checkbox hidden" data-price="450">
+                            <label for="tv-55" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">55" TV/Monitor for Slideshow/Videos</span>
+                                        <p class="text-sm text-gray-600">Large display for presentations and videos</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$450</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="projector" class="service-checkbox hidden" data-price="400">
+                            <label for="projector" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Projector and Screen Setup</span>
+                                        <p class="text-sm text-gray-600">Large projection display system</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$400</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Lighting Packages -->
+                        <div class="service-item">
+                            <input type="checkbox" id="basic-lighting" class="service-checkbox hidden" data-price="300">
+                            <label for="basic-lighting" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Basic Uplighting (8 lights)</span>
+                                        <p class="text-sm text-gray-600">Ambient lighting to enhance venue atmosphere</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-yellow-600">$300</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="premium-lighting" class="service-checkbox hidden" data-price="500">
+                            <label for="premium-lighting" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Premium Uplighting (12+ lights)</span>
+                                        <p class="text-sm text-gray-600">Enhanced lighting package with more coverage</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-yellow-600">$500</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="dance-spotlight" class="service-checkbox hidden" data-price="200">
+                            <label for="dance-spotlight" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Dance Floor Spotlighting</span>
+                                        <p class="text-sm text-gray-600">Focused lighting for dance floor</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-yellow-600">$200</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="gobo-projection" class="service-checkbox hidden" data-price="350">
+                            <label for="gobo-projection" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Gobo Monogram Projection</span>
+                                        <p class="text-sm text-gray-600">Custom monogram or design projection</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-yellow-600">$350</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Additional DJ Services -->
+                        <div class="service-item">
+                            <input type="checkbox" id="extra-hours" class="service-checkbox hidden" data-price="200" data-qty="true">
+                            <label for="extra-hours" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Additional Hours Beyond Package</span>
+                                        <p class="text-sm text-gray-600">$200/hour - Qty: <input type="number" min="1" max="6" value="1" class="qty-input w-16 ml-2 p-1 border border-gray-300 rounded"> hours</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-orange-600">$200/hr</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="ceremony-music" class="service-checkbox hidden" data-price="300">
+                            <label for="ceremony-music" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Ceremony Music Service</span>
+                                        <p class="text-sm text-gray-600">Music for wedding ceremony processional/recessional</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-orange-600">$300</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="cocktail-hour" class="service-checkbox hidden" data-price="150">
+                            <label for="cocktail-hour" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Cocktail Hour Background Music</span>
+                                        <p class="text-sm text-gray-600">Ambient music during cocktail reception</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-orange-600">$150</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Entertainment -->
+                        <div class="service-item">
+                            <input type="checkbox" id="photobooth-4hr" class="service-checkbox hidden" data-price="600">
+                            <label for="photobooth-4hr" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Photo Booth Rental (4 hours)</span>
+                                        <p class="text-sm text-gray-600">Interactive photo booth with props and prints</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-pink-600">$600</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="photobooth-6hr" class="service-checkbox hidden" data-price="800">
+                            <label for="photobooth-6hr" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Photo Booth Rental (6 hours)</span>
+                                        <p class="text-sm text-gray-600">Extended photo booth rental with more time</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-pink-600">$800</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="karaoke" class="service-checkbox hidden" data-price="300">
+                            <label for="karaoke" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Karaoke Setup and Hosting</span>
+                                        <p class="text-sm text-gray-600">Interactive karaoke entertainment</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-pink-600">$300</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Special Effects -->
+                        <div class="service-item">
+                            <input type="checkbox" id="fog-machine" class="service-checkbox hidden" data-price="200">
+                            <label for="fog-machine" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Fog Machine/Special Effects</span>
+                                        <p class="text-sm text-gray-600">Atmospheric effects for dramatic moments</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-red-600">$200</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="cold-sparklers" class="service-checkbox hidden" data-price="250">
+                            <label for="cold-sparklers" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Cold Sparklers for First Dance</span>
+                                        <p class="text-sm text-gray-600">Safe indoor sparkler effects</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-red-600">$250</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Hair Services -->
+                    <div class="space-y-4 mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 border-b border-gray-200 pb-2">Hair Services</h3>
+                        
+                        <!-- Regular Hair Services -->
+                        <div class="service-item">
+                            <input type="checkbox" id="precision-cut" class="service-checkbox hidden" data-price="85">
+                            <label for="precision-cut" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Precision Cut</span>
+                                        <p class="text-sm text-gray-600">Expert cutting techniques that enhance your natural features</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-sky-600">$85</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="color-services" class="service-checkbox hidden" data-price="120">
+                            <label for="color-services" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Color Services</span>
+                                        <p class="text-sm text-gray-600">Full color, highlights, lowlights, and color correction</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-pink-600">$120+</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="cut-color-package" class="service-checkbox hidden" data-price="185">
+                            <label for="cut-color-package" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Cut & Color Package</span>
+                                        <p class="text-sm text-gray-600">Complete transformation with precision cut and color</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-cyan-600">$185</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Bridal Hair Services -->
+                        <div class="service-item">
+                            <input type="checkbox" id="bridal-styling" class="service-checkbox hidden" data-price="150" data-custom="true">
+                            <label for="bridal-styling" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Bridal Hair Styling</span>
+                                        <p class="text-sm text-gray-600">Custom price: $<input type="number" min="100" max="500" value="150" class="price-input w-16 ml-1 p-1 border border-gray-300 rounded"></p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">Custom</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="bridal-trial" class="service-checkbox hidden" data-price="85" data-custom="true">
+                            <label for="bridal-trial" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Bridal Hair Trial</span>
+                                        <p class="text-sm text-gray-600">Custom price: $<input type="number" min="50" max="200" value="85" class="price-input w-16 ml-1 p-1 border border-gray-300 rounded"></p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">Custom</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="bridesmaid-styling" class="service-checkbox hidden" data-price="75" data-qty="true" data-custom="true">
+                            <label for="bridesmaid-styling" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Bridesmaid Hair Styling</span>
+                                        <p class="text-sm text-gray-600">$<input type="number" min="50" max="150" value="75" class="price-input w-16 ml-1 p-1 border border-gray-300 rounded"> each x <input type="number" min="1" max="12" value="1" class="qty-input w-16 ml-1 p-1 border border-gray-300 rounded"> people</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">Custom</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="mother-styling" class="service-checkbox hidden" data-price="85" data-qty="true" data-custom="true">
+                            <label for="mother-styling" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Mother of Bride/Groom Hair Styling</span>
+                                        <p class="text-sm text-gray-600">$<input type="number" min="60" max="150" value="85" class="price-input w-16 ml-1 p-1 border border-gray-300 rounded"> each x <input type="number" min="1" max="4" value="1" class="qty-input w-16 ml-1 p-1 border border-gray-300 rounded"> people</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">Custom</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="flower-girl-styling" class="service-checkbox hidden" data-price="45" data-qty="true" data-custom="true">
+                            <label for="flower-girl-styling" class="service-label block p-4 rounded-lg border-2 border-gray-200">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">Flower Girl Hair Styling</span>
+                                        <p class="text-sm text-gray-600">$<input type="number" min="30" max="80" value="45" class="price-input w-16 ml-1 p-1 border border-gray-300 rounded"> each x <input type="number" min="1" max="6" value="1" class="qty-input w-16 ml-1 p-1 border border-gray-300 rounded"> children</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-purple-600">Custom</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Package Bundles -->
+                    <div class="space-y-4 mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 border-b border-gray-200 pb-2">Discounted Package Bundles</h3>
+                        
+                        <div class="service-item">
+                            <input type="checkbox" id="complete-coverage" class="service-checkbox hidden" data-price="800" data-bundle="true">
+                            <label for="complete-coverage" class="service-label block p-4 rounded-lg border-2 border-gray-200 bg-green-50">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">"Complete Coverage" Bundle</span>
+                                        <p class="text-sm text-gray-600">Ceremony music + cocktail hour + reception + basic uplighting + fog machine</p>
+                                        <p class="text-xs text-green-600 font-medium">Save $150!</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$800</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="entertainment-plus" class="service-checkbox hidden" data-price="1200" data-bundle="true">
+                            <label for="entertainment-plus" class="service-label block p-4 rounded-lg border-2 border-gray-200 bg-green-50">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">"Entertainment Plus" Bundle</span>
+                                        <p class="text-sm text-gray-600">Photo booth 4hrs + karaoke + premium uplighting + special effects</p>
+                                        <p class="text-xs text-green-600 font-medium">Save $200!</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$1,200</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="service-item">
+                            <input type="checkbox" id="technical-pro" class="service-checkbox hidden" data-price="600" data-bundle="true">
+                            <label for="technical-pro" class="service-label block p-4 rounded-lg border-2 border-gray-200 bg-green-50">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-semibold">"Technical Pro" Bundle</span>
+                                        <p class="text-sm text-gray-600">40" monitor + wireless mics + live streaming + custom playlist</p>
+                                        <p class="text-xs text-green-600 font-medium">Save $100!</p>
+                                    </div>
+                                    <span class="text-lg font-bold text-green-600">$600</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Location Input -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-gray-700 border-b border-gray-200 pb-2">Location & Travel</h3>
+                        
+                        <div>
+                            <label for="client-location" class="block text-sm font-medium text-gray-700 mb-2">Your Location</label>
+                            <input type="text" id="client-location" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent" 
+                                   placeholder="Enter your city, state or zip code">
+                            <p class="text-xs text-gray-500 mt-1">Travel charges apply for distances over 30 miles from Portland, Maine</p>
+                        </div>
+
+                        <div>
+                            <label for="distance-override" class="block text-sm font-medium text-gray-700 mb-2">Known Distance (Optional)</label>
+                            <input type="number" id="distance-override" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent" 
+                                   placeholder="Distance in miles from Portland, ME">
+                            <p class="text-xs text-gray-500 mt-1">If you know the exact distance, enter it here to override automatic calculation</p>
+                        </div>
+                    </div>
+
+                    <!-- Client Email -->
+                    <div class="mt-6">
+                        <label for="client-email" class="block text-sm font-medium text-gray-700 mb-2">Your Email Address (Optional)</label>
+                        <input type="email" id="client-email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent" 
+                               placeholder="your.email@example.com">
+                        <p class="text-xs text-gray-500 mt-1">Provide your email to receive a copy of the quote</p>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="mt-6">
+                        <label for="additional-notes" class="block text-sm font-medium text-gray-700 mb-2">Special Requests or Notes</label>
+                        <textarea id="additional-notes" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent" 
+                                  placeholder="Any special requests, hair length/type details, or additional services..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Quote Summary -->
+                <div class="calculator-card bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800 tracking-wide">QUOTE SUMMARY</h2>
+                    
+                    <div class="quote-summary rounded-xl p-6 mb-6">
+                        <div id="selected-services" class="space-y-3 mb-4">
+                            <p class="text-gray-600 italic">No services selected yet...</p>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-4 space-y-2">
+                            <div class="flex justify-between">
+                                <span class="font-medium">Service Total:</span>
+                                <span id="services-total" class="font-bold">$0.00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">Travel Distance:</span>
+                                <span id="travel-distance">-- miles</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">Travel Charge:</span>
+                                <span id="travel-charge">$0.00</span>
+                            </div>
+                            <div class="border-t border-gray-300 pt-2 flex justify-between text-lg">
+                                <span class="font-bold">Total Quote:</span>
+                                <span id="total-quote" class="font-bold text-sky-600">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-4">
+                        <button id="calculate-distance" class="w-full bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-sky-600 transition-all transform hover:scale-105">
+                            Calculate Distance & Update Quote
+                        </button>
+                        
+                        <button id="book-appointment" class="w-full bg-gradient-to-r from-sky-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-sky-600 hover:to-pink-600 transition-all transform hover:scale-105" disabled>
+                            Book Appointment with Quote
+                        </button>
+                        
+                        <button id="email-quote" class="w-full border-2 border-sky-500 text-sky-500 px-6 py-3 rounded-lg font-semibold hover:bg-sky-500 hover:text-white transition-all" disabled>
+                            Email Quote to Yourself
+                        </button>
+                    </div>
+
+                    <!-- Important Notes -->
+                    <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                        <h4 class="font-semibold text-yellow-800 mb-2">Important Notes:</h4>
+                        <ul class="text-sm text-yellow-700 space-y-1">
+                            <li>• Quotes are estimates and may vary based on hair condition and complexity</li>
+                            <li>• Travel charges apply for distances over 30 miles from Portland, Maine</li>
+                            <li>• Color services pricing may increase based on hair length and desired results</li>
+                            <li>• Final pricing will be confirmed during consultation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="mt-16 text-center">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Ready to Book?</h2>
+                <p class="text-gray-600 mb-6">Contact Meghan directly to schedule your appointment and confirm your quote.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://www.styleseat.com/m/v/meghanlaurahair" target="_blank" 
+                       class="bg-gradient-to-r from-sky-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-sky-600 hover:to-pink-600 transition-all">
+                        Book on StyleSeat
+                    </a>
+                    <a href="index.html#contact" 
+                       class="border-2 border-sky-500 text-sky-500 px-6 py-3 rounded-lg font-semibold hover:bg-sky-500 hover:text-white transition-all">
+                        View Contact Info
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-sky-600 to-pink-500 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="text-2xl font-bold mb-4">Meghan Hair Studio</div>
+            <p class="text-white/80 mb-4">Precision hair artistry inspired by Vidal Sassoon's legacy of excellence</p>
+            <a href="index.html" class="text-white hover:text-white/80 transition-colors">← Back to Main Site</a>
+        </div>
+    </footer>
+
+    <script src="quote-calculator.js"></script>
+</body>
+</html>
